@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  div.login-page
+    div.form
+      form(class="login-form" method="POST" action='/login')
+        input(type="text" placeholder="username" class='form_control' name="username")
+        input(type="password" placeholder="password" class='form_control' name="password")
+        button(type='submit') Login
