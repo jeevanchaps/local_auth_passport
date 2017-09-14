@@ -63,7 +63,7 @@ router.get('/loginFailure', function(req, res, next) {
 });
 
 router.get('/loginSuccess', function(req, res, next) {
-  res.render('hello');
+  res.send('Logged in Successfully');
 });
 
 router.post('/login',
