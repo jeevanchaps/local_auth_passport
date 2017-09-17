@@ -43,7 +43,7 @@ passport.deserializeUser(function(user, done) {
 
 
 //register check
-passport.use(new LocalStrategy(
+passport.use('local-signup',new LocalStrategy( // always name your strategy
   function(username, password, done) {
     userDetails.findOne({
         username: username
@@ -55,7 +55,7 @@ passport.use(new LocalStrategy(
         if (user) {
           return done(null, false);
         } else {
-          var newUser = new usersInfo();
+          var newUser = new userDetails();  
           newUser.username = username;
           newUser.password = newUser.generateHash(password);
 
@@ -66,13 +66,12 @@ passport.use(new LocalStrategy(
             return done(null, newUser);
           });
         }
-        return done(null, user);
       });
   }
 ));
 
 //login check
-passport.use(new LocalStrategy(
+passport.use('local',new LocalStrategy(
   function(username, password, done) {
     userDetails.findOne({
         username: username
@@ -99,7 +98,7 @@ passport.use(new LocalStrategy(
 |--------------------------------------|
 */
 router.post('/register',
-  passport.authenticate('local', {
+  passport.authenticate('local-signup', { // use the passport name here to use the specic one
     successRedirect: '/auth/registerSuccess',
     failureRedirect: '/auth/registerFailure'
   }));
@@ -123,7 +122,7 @@ router.get('/registerSuccess', function(req, res, next) {
 |--------------------------------------|
 */
 router.post('/login',
-  passport.authenticate('local', {
+  passport.authenticate('local', { // use the passport name here to use the specic one
     successRedirect: '/auth/loginSuccess',
     failureRedirect: '/auth/loginFailure'
   }));
