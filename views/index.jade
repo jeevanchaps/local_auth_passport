@@ -3,3 +3,9 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
+  p
+    a(href="/auth/login")
+      |Login
+  p
+    a(href="auth/register")
+      |Register

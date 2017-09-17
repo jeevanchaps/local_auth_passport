@@ -7,3 +7,13 @@ router.get('/', function(req, res, next) {
 });
 
 module.exports = router;
+
+
+router.get('/auth/login',function(req,res,next){
+  res.render('login');
+});
+
+
+router.get('/auth/register',function(req,res,next){
+  res.render('register');
+});

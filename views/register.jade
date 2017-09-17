@@ -3,8 +3,8 @@ extends layout
 block content
   div.login-page
     div.form
-      form(class="login-form" method="POST" action='/auth/login')
-        h4 Log In
+      form(class="login-form" method="POST" action='/auth/register')
+        h4 Sign UP
         input(type="text" placeholder="username" class='form_control' name="username")
         input(type="password" placeholder="password" class='form_control' name="password")
-        button(type='submit') Login
+        button(type='submit') Sign UP
