@@ -26,9 +26,9 @@ users.methods.generateHash = function(password) {
   return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
 };
 
-// users.methods.validPassword = function(password) {
-//   return bcrypt.compareSync(password, this.local.password);
-// };
+users.methods.validPassword = function(password) {
+  return bcrypt.compareSync(password, this.password);
+};
 
 var userDetails = mongoose.model('usersInfo', users);
 
@@ -55,7 +55,7 @@ passport.use('local-signup',new LocalStrategy( // always name your strategy
         if (user) {
           return done(null, false);
         } else {
-          var newUser = new userDetails();  
+          var newUser = new userDetails();
           newUser.username = username;
           newUser.password = newUser.generateHash(password);
 
@@ -83,7 +83,7 @@ passport.use('local',new LocalStrategy(
         if (!user) {
           return done(null, false);
         }
-        if (user.password != password) {
+        if (!user.validPassword(password)) {
           return done(null, false);
         }
         return done(null, user);
