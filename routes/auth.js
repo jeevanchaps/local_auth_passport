@@ -91,6 +91,10 @@ passport.use('local',new LocalStrategy(
   }
 ));
 
+
+
+
+
 /*
 |--------------------------------------|
 | Register routes                         |
@@ -132,8 +136,10 @@ router.get('/loginFailure', function(req, res, next) {
 });
 
 router.get('/loginSuccess', function(req, res, next) {
-  res.send('Logged in Successfully');
+  res.render('profile');
 });
+
+
 
 
 module.exports = router;

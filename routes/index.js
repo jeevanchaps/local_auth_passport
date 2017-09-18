@@ -17,3 +17,9 @@ router.get('/auth/login',function(req,res,next){
 router.get('/auth/register',function(req,res,next){
   res.render('register');
 });
+
+
+router.get('/logout',function(req, res, next){
+  req.logout();
+  res.redirect('/');
+});
